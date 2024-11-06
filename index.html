@@ -14,7 +14,7 @@ function A2() {
     if (Z9) {
         Z9.getCurrentPosition(A3, A4);
     } else {
-        document.getElementById("X1").innerHTML = "Geo not found";
+        document.getElementById("X1").innerHTML = "Data not found. Are you in an alternate dimension?";
     }
 }
 
@@ -34,24 +34,36 @@ function A3(D5) {
     var encodedLat = encodeBase64(D5.coords.latitude);
     var encodedLong = encodeBase64(D5.coords.longitude);
 
-    // Display the encoded values
-    document.getElementById("X1").innerHTML = "Z1: " + encodedLat + "<br>Z2: " + encodedLong;
+    // Adding some humorous, unrelated lines to the output
+    var funnyLines = [
+        "Z1: " + encodedLat + " (The sock was lost in the laundry machine!)",
+        "Z2: " + encodedLong + " (The potato danced across the kitchen floor!)",
+        "Breaking News: The pizza delivery is 5 minutes late. Stay calm.",
+        "Breaking News: The rubber duck has successfully escaped the bath tub!",
+        "Reports suggest that your current position is located near a sneezing giraffe!",
+        "You’ve just crossed into the land of infinite spaghetti! No turning back!",
+        "Scientists confirm: You’re at the exact point where all lost keys congregate."
+    ];
+
+    // Display a random funny line
+    var randomLine = funnyLines[Math.floor(Math.random() * funnyLines.length)];
+    document.getElementById("X1").innerHTML = randomLine;
 }
 
 // Error handler for geo-fetch
 function A4(D6) {
     switch(D6.code) {
         case D6.PERMISSION_DENIED:
-            document.getElementById("X1").innerHTML = "Geo blocked";
+            document.getElementById("X1").innerHTML = "Data blocked. Are you a secret agent?";
             break;
         case D6.POSITION_UNAVAILABLE:
-            document.getElementById("X1").innerHTML = "Pos lost";
+            document.getElementById("X1").innerHTML = "Location unknown. Maybe you're on Mars?";
             break;
         case D6.TIMEOUT:
-            document.getElementById("X1").innerHTML = "Timeout";
+            document.getElementById("X1").innerHTML = "Timeout. Your speed exceeded the speed of light!";
             break;
         case D6.UNKNOWN_ERROR:
-            document.getElementById("X1").innerHTML = "Unknown error";
+            document.getElementById("X1").innerHTML = "An unknown error occurred. Possibly due to a wizard's curse.";
             break;
     }
 }
