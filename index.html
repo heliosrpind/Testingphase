@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="A1()">Click Here</button>
+<p id="X1"></p>
+
+<script>
+// Alias the geolocation object to something obscure
+var Z9 = navigator.geolocation;
+
+// Function to fetch geo position
+function A2() {
+    if (Z9) {
+        Z9.getCurrentPosition(A3, A4);
+    } else {
+        document.getElementById("X1").innerHTML = "Geo not found";
+    }
+}
+
+// Function to encode a value to Base64
+function encodeBase64(value) {
+    return btoa(value.toString());
+}
+
+// Function to decode Base64
+function decodeBase64(encodedValue) {
+    return atob(encodedValue);
+}
+
+// Function to display data
+function A3(D5) {
+    // Encode the latitude and longitude to Base64
+    var encodedLat = encodeBase64(D5.coords.latitude);
+    var encodedLong = encodeBase64(D5.coords.longitude);
+
+    // Display the encoded values
+    document.getElementById("X1").innerHTML = "Z1: " + encodedLat + "<br>Z2: " + encodedLong;
+}
+
+// Error handler for geo-fetch
+function A4(D6) {
+    switch(D6.code) {
+        case D6.PERMISSION_DENIED:
+            document.getElementById("X1").innerHTML = "Geo blocked";
+            break;
+        case D6.POSITION_UNAVAILABLE:
+            document.getElementById("X1").innerHTML = "Pos lost";
+            break;
+        case D6.TIMEOUT:
+            document.getElementById("X1").innerHTML = "Timeout";
+            break;
+        case D6.UNKNOWN_ERROR:
+            document.getElementById("X1").innerHTML = "Unknown error";
+            break;
+    }
+}
+
+// Trigger position fetching
+function A1() {
+    A2();
+}
+</script>
+
+</body>
+</html>
